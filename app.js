@@ -70,7 +70,6 @@ app.post('/repos', (req, res) => {
 
                 const data = await getAllRepos(allRepo)
 
-                console.log('Time elapsed since queuing the request:', new Date().getTime() - start_time);
                 return res.json({"results": data, "Time elapsed since queuing the request(in ms):" : new Date().getTime() - start_time})
 
             }else{

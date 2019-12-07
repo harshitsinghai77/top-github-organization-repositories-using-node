@@ -30,7 +30,7 @@ describe('Functional testing the /repos route', function() {
             })
     });
 
-    it('should return No organization found on rendering with invalid organization if foud', () => {
+    it('should return No organization found on rendering with invalid organization name', () => {
         return request(app)
             .post('/repos') 
             .send({org: 'harshitsinghai77'})
