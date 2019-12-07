@@ -3,8 +3,8 @@
 ### Frameworks: React and Node. 
 ### Deployed: Heroku, Netlify 
 
-Node (Backend):  https://harshit-verloop.herokuapp.com/repos 
-React (Frontend): https://verloop-harshit.netlify.com/ 
+Node (Backend):  https://harshit-verloop.herokuapp.com/repos </br>
+React (Frontend): https://verloop-harshit.netlify.com/ </br>
 Github: https://github.com/harshitsinghai77/verloop 
  
 GitHub API Endpoint: https://api.github.com/orgs/:orgsName/repos 
