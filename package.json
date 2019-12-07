@@ -1,0 +1,26 @@
+{
+  "name": "github-repositories-star",
+  "version": "1.0.0",
+  "description": "A simple API server, which fetches data from Github, serializes in a certain format.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Fetch most star github repositories",
+    "Top 3 github stars organization repository"
+  ],
+  "author": "harshitsinghai77",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "12.6.0"
+  }
+}
