@@ -4,11 +4,24 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
 
-require('dotenv').config();
+//Logging
+const pino = require('pino')("./logs/info.log");;
+const expressPino = require("express-pino-logger")({
+    logger: pino
+});
+
+//Including ENV file
+require('dotenv').config(); 
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(expressPino);
+
+app.get('/', (req, res) => {
+ res.send('Hello World');
+});
 
 
 async function getAllRepos(list){
@@ -37,10 +50,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/repos', (req, res) => {
-    
     const organization = req.body.org
     if (!organization){
-        return res.json({"results": "Invalid organization name. Please enter valid github organization"})
+        return res.json({"results": "Oganization name not found. Please enter valid github organization name"})
     }
 
     let start_time = new Date().getTime();
@@ -80,6 +92,6 @@ app.post('/repos', (req, res) => {
 })
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log('Listening to port 3000')
+module.exports = app.listen(PORT, () => {
+    console.log('Server running on port %d', PORT);
 })
