@@ -3,11 +3,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
+
 require('dotenv').config();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 
 async function getAllRepos(list){
     const promises = list.map(function (item) { 
@@ -30,6 +32,9 @@ async function getAllRepos(list){
     return result;
 }
 
+app.get('/', (req, res) => {
+    res.send("Hello world")
+})
 
 app.post('/repos', (req, res) => {
     
@@ -37,6 +42,9 @@ app.post('/repos', (req, res) => {
     if (!organization){
         return res.json({"results": "Invalid organization name. Please enter valid github organization"})
     }
+
+    let start_time = new Date().getTime();
+
     axios.get(`https://api.github.com/orgs/${organization}/repos?per_page=100&client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`)
         .then(async resp => {
             const link = resp.headers.link
@@ -49,7 +57,9 @@ app.post('/repos', (req, res) => {
                 }
 
                 const data = await getAllRepos(allRepo)
-                return res.json({"results": data})
+
+                console.log('Time elapsed since queuing the request:', new Date().getTime() - start_time);
+                return res.json({"results": data, "Time elapsed since queuing the request(in ms):" : new Date().getTime() - start_time})
 
             }else{
                 let sortedData = resp.data.sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0,3);
@@ -59,13 +69,14 @@ app.post('/repos', (req, res) => {
                         stars: value.stargazers_count
                     }
                 })
-                return res.json({"results": sortedData})
+                
+                return res.json({"results": sortedData, "Time elapsed since queuing the request(in ms):" : new Date().getTime() - start_time})
             }
         })
         .catch(error => {
             res.json({"results": "No such organization found!"})
         });
-
+       
 })
 
 const PORT = process.env.PORT || 3000;
