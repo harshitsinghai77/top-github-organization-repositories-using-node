@@ -5,6 +5,7 @@
 
 Node (Backend):  https://harshit-verloop.herokuapp.com/repos </br>
 React (Frontend): https://verloop-harshit.netlify.com/ </br>
+Medium: https://medium.com/@harshitsinghai77/demystifying-github-api-to-fetch-the-top-3-repositories-by-stars-using-node-js-aef8818551cb</br>
 Github: https://github.com/harshitsinghai77/verloop 
  
 GitHub API Endpoint: https://api.github.com/orgs/:orgsName/repos 
