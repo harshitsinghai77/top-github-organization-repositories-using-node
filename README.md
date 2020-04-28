@@ -1,4 +1,4 @@
-# A simple API which returns top 10 repositories of an organization in GitHub by stars
+# Top 10 repositories of an organization in GitHub by stars
 
 ### Frameworks: Vue and Node. 
 ### Deployed: Heroku (backend), Netlify (Vue app) 
